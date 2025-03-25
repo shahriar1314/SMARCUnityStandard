@@ -291,6 +291,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31750014}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &39359782 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3215108230359355312, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+  m_PrefabInstance: {fileID: 1574156454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &42527322
 GameObject:
   m_ObjectHideFlags: 0
@@ -8026,7 +8031,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840331842}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ccd10b0e216dee2faaf8d4680d4add2, type: 3}
   m_Name: 
@@ -8034,8 +8039,46 @@ MonoBehaviour:
   BaseLink: {fileID: 1184436778}
   BaseLinkSAM: {fileID: 1290720233}
   Target: {fileID: 1184436779}
+  DroneActuator: {fileID: 39359782}
   droneController: {fileID: 840331844}
   speed: 1
+--- !u!114 &840331852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840331842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb95180fe13dbecfaa077c21fb50675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseLink: {fileID: 1184436778}
+  BaseLinkSAM: {fileID: 1290720233}
+  Target: {fileID: 1184436779}
+  DroneActuator: {fileID: 39359782}
+  droneController: {fileID: 840331844}
+  sideLength: 10
+  speed: 1
+--- !u!114 &840331853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840331842}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d3749dd04446854814840315a81b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseLink: {fileID: 1184436778}
+  BaseLinkSAM: {fileID: 1290720233}
+  droneController: {fileID: 840331844}
+  sideLength: 3
+  speed: 1
+  quadrotorPrefab: {fileID: 840331842}
 --- !u!1 &843903048
 GameObject:
   m_ObjectHideFlags: 0
@@ -15091,6 +15134,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 840331849}
+    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840331852}
+    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840331853}
   m_SourcePrefab: {fileID: 100100000, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
 --- !u!1 &1580110839
 GameObject:
