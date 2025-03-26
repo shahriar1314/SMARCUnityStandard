@@ -51,6 +51,9 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0", 
+
+    "com.unity.ml-agents": "file:/home/shs/colcon_ws/src/smarc2/simulation/ml_agents/ml-agents-latest_release/com.unity.ml-agents",
+    "com.unity.ml-agents.extensions": "file:/home/shs/colcon_ws/src/smarc2/simulation/ml_agents/ml-agents-latest_release/com.unity.ml-agents.extensions"
   }
 }
