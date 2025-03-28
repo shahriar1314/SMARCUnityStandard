@@ -132,7 +132,7 @@ public class DroneAgent2 : Agent
         var reward = -distanceToGoal + velocityPenalty; 
         SetReward(reward);
 
-        // Debug.Log($"[DroneAgent] Distance to Goal: {distanceToGoal} | Reward: {reward}");
+        Debug.Log($"[DroneAgent] Distance to Goal: {distanceToGoal} | Reward: {reward}");
     }
 
     public void FixedUpdate()
