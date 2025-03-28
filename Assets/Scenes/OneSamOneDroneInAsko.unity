@@ -8004,9 +8004,10 @@ MonoBehaviour:
   BaseLink: {fileID: 1184436778}
   BaseLinkSAM: {fileID: 1290720233}
   Target: {fileID: 1184436779}
+  DroneActuator: {fileID: 39359782}
   droneController: {fileID: 840331844}
-  sideLength: 4
-  speed: 0.15
+  PathLenght: 6
+  speed: 1
 --- !u!114 &840331848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8093,49 +8094,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseLink: {fileID: 1184436778}
   BaseLinkSAM: {fileID: 1290720233}
-  Drone: {fileID: 1184436779}
-  droneController: {fileID: 840331844}
-  sideLength: 3
-  speed: 1
---- !u!114 &840331857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 2
-  DecisionStep: 2
-  TakeActionsBetweenDecisions: 0
---- !u!114 &840331858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0da3ddf8615f57ce96d5325f753c68c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 10000000
-  BaseLink: {fileID: 1184436778}
-  BaseLinkSAM: {fileID: 1290720233}
-  goal: {fileID: 682568269}
-  droneController: {fileID: 840331844}
-  targetHeight: 3
-  maxSpeed: 1
   Target: {fileID: 1184436779}
   DroneActuator: {fileID: 39359782}
+  droneController: {fileID: 840331844}
+  PathLenght: 6
+  speed: 1
 --- !u!114 &840331859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8182,15 +8145,54 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 10000
   BaseLink: {fileID: 1184436778}
   BaseLinkSAM: {fileID: 1290720233}
   goal: {fileID: 682568269}
   droneController: {fileID: 840331844}
-  targetHeight: 3
+  maxSpeed: 0.5
+  debugMode: 0
+  Target: {fileID: 1184436779}
+  DroneActuator: {fileID: 39359782}
+--- !u!114 &840331863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840331842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  DecisionStep: 1
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &840331864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840331842}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4c7937e0ccc47b2adb449ab1e86f1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 10000
+  BaseLink: {fileID: 1184436778}
+  BaseLinkSAM: {fileID: 1290720233}
+  goal: {fileID: 1018751213}
+  droneController: {fileID: 840331844}
   maxSpeed: 0.5
   Target: {fileID: 1184436779}
   DroneActuator: {fileID: 39359782}
+  debugMode: 0
 --- !u!1 &843903048
 GameObject:
   m_ObjectHideFlags: 0
@@ -15328,13 +15330,13 @@ PrefabInstance:
       addedObject: {fileID: 840331859}
     - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 840331858}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 840331857}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 840331860}
+    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840331863}
+    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 840331864}
   m_SourcePrefab: {fileID: 100100000, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
 --- !u!1 &1580110839
 GameObject:
@@ -19437,6 +19439,14 @@ PrefabInstance:
       propertyPath: m_ParentAnchorPosition.y
       value: -0.06299999
       objectReference: {fileID: 0}
+    - target: {fileID: 316067522224412707, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: 0.57299805
+      objectReference: {fileID: 0}
+    - target: {fileID: 627324507222271568, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: -0.077028334
+      objectReference: {fileID: 0}
     - target: {fileID: 1044450836926195353, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
       propertyPath: m_Name
       value: sam_auv_v1
@@ -19481,17 +19491,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1272450955152368916, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: 0.23999023
+      objectReference: {fileID: 0}
     - target: {fileID: 2184323414448247477, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
       propertyPath: DrawRays
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647810764119384602, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: -0.0000019669533
+      objectReference: {fileID: 0}
+    - target: {fileID: 4664684835688450816, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: -0.079956055
       objectReference: {fileID: 0}
     - target: {fileID: 5932733798047782959, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
       propertyPath: m_ParentAnchorPosition.y
       value: 0.0019999966
       objectReference: {fileID: 0}
+    - target: {fileID: 5932733798047782959, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: 0.45996094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6871451291976550839, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: -0.054323256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978510351766821763, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: 0.6500244
+      objectReference: {fileID: 0}
     - target: {fileID: 7428871751404388271, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
       propertyPath: m_ParentAnchorPosition.y
       value: -0.012500003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428871751404388271, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: -0.27294922
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635426077489710597, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+      propertyPath: m_ParentAnchorPosition.z
+      value: -0.67700195
       objectReference: {fileID: 0}
     - target: {fileID: 7936113580436805432, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
       propertyPath: DrawRays
