@@ -29,15 +29,10 @@ public class DroneAgent2 : Agent
     [Header("Basics")] 
     public GameObject BaseLink;
     public GameObject BaseLinkSAM;
-
     public Transform goal;             // where the drone should go 
-
     public DroneController.DroneController droneController;
-
-    double massQuadrotor;
-    
-    public float targetHeight = 3f;  
-    public float maxSpeed = 0.5f;     
+    public float maxSpeed = 0.5f;   
+    public bool debugMode = false;    
 
     private ArticulationBody baseLinkDroneAB;
     private ArticulationBody[] ABparts;
@@ -100,10 +95,10 @@ public class DroneAgent2 : Agent
         sensor.AddObservation(goal.position.y);
         sensor.AddObservation(goal.position.z);
 
-        Debug.Log($"[DroneAgent] Observations Collected | Drone Pos : {position} | Vel: {velocity} | Acc: {acceleration}");
-        Debug.Log($"[DroneAgent] Observations Collected | Goal: {goal.position}");
+        // Debug.Log($"[DroneAgent] Observations Collected | Drone Pos : {position} | Vel: {velocity} | Acc: {acceleration}");
+        // Debug.Log($"[DroneAgent] Observations Collected | Goal: {goal.position}");
         float distanceToGoal = Vector3.Distance(BaseLink.transform.position, goal.position);
-        Debug.Log($"[DroneAgent] Observations Collected | DISTANCE TO GOAL: {distanceToGoal}");
+        // Debug.Log($"[DroneAgent] Observations Collected | DISTANCE TO GOAL: {distanceToGoal}");
         
     }
 
@@ -117,7 +112,7 @@ public class DroneAgent2 : Agent
         float accelY = actionBuffers.ContinuousActions[4];
         float accelZ = actionBuffers.ContinuousActions[5];
 
-        Debug.Log($"[DroneAgent] ACTION RECEIVED | Vel: ({velX}, {velY}, {velZ}) | Acc: ({accelX}, {accelY}, {accelZ})");
+        // Debug.Log($"[DroneAgent] ACTION RECEIVED | Vel: ({velX}, {velY}, {velZ}) | Acc: ({accelX}, {accelY}, {accelZ})");
 
 
         if (droneController != null)
@@ -126,13 +121,17 @@ public class DroneAgent2 : Agent
             droneController.TargetAccel = new Vector3(accelX, accelY, accelZ)*0;
         }
 
+        float maxDistance = 30f; // You define this based on environment scale
         float distanceToGoal = Vector3.Distance(BaseLink.transform.position, goal.position);
-        float velocityPenalty = -Vector3.Magnitude(baseLinkDroneAB.linearVelocity) * 0.1f;
+        float normalizedDistance = distanceToGoal / maxDistance; // [0, 1]
 
-        var reward = -distanceToGoal + velocityPenalty; 
+        float velocityPenalty = -Vector3.Magnitude(baseLinkDroneAB.linearVelocity) * 0.01f;
+
+        float reward = -normalizedDistance; // + velocityPenalty;
         SetReward(reward);
 
-        Debug.Log($"[DroneAgent] Distance to Goal: {distanceToGoal} | Reward: {reward}");
+
+        if(debugMode) Debug.Log($"[DroneAgent] Distance to Goal: {distanceToGoal} | Reward: {reward}");
     }
 
     public void FixedUpdate()
@@ -142,25 +141,34 @@ public class DroneAgent2 : Agent
 
         float distanceToGoal = Vector3.Distance(BaseLink.transform.position, goal.position);
         // Debug.Log($"[DroneAgent] Distance to Goal: {distanceToGoal} ");
+        var position = BaseLink.transform.position;
 
         if (distanceToGoal < 3f)
         {
-            SetReward(2f);
+            SetReward(10f);
             EndEpisode();
             Debug.Log($"EPISODE ENDED, GOAL REACHED, Distance to Goal:  {distanceToGoal}");
         }
 
-        if (distanceToGoal > 30f)
+        else if (distanceToGoal > 25f)
         {
             SetReward(-1f);
             EndEpisode();
             Debug.Log($"EPISODE ENDED, DRONE IS TOO FAR, Distance to Goal: {distanceToGoal}");
         }
+
+        else if (position.y < 0)
+        {
+            SetReward(-1f);
+            EndEpisode();
+            Debug.Log($"EPISODE ENDED, DRONE WENT UNDERWATER, Distance to Goal: {distanceToGoal}");
+        }
+
     }
 
     public override void OnEpisodeBegin()
     {
-        Debug.Log("[DroneAgent] On Episode Beginning. Resetting agent...");
+        if(debugMode) Debug.Log("[DroneAgent] On Episode Beginning. Resetting agent...");
         
         immovableStage = 0;
 
@@ -186,9 +194,9 @@ public class DroneAgent2 : Agent
             }     
         }
 
-        Debug.Log("******************* A G E N T   R E S E T ************************");
-        Debug.Log($" [ResetAgent] Goal Position  : {goal.position.x}, {goal.position.y}, {goal.position.z}");
-        Debug.Log($" [ResetAgent] Drone Position : {BaseLink.transform.position.x}, {BaseLink.transform.position.y}, {BaseLink.transform.position.z}");
+        if(debugMode) Debug.Log("******************* A G E N T   R E S E T ************************");
+        if(debugMode) Debug.Log($" [ResetAgent] Goal Position  : {goal.position.x}, {goal.position.y}, {goal.position.z}");
+        if(debugMode) Debug.Log($" [ResetAgent] Drone Position : {BaseLink.transform.position.x}, {BaseLink.transform.position.y}, {BaseLink.transform.position.z}");
         
 
     }
@@ -200,9 +208,9 @@ public class DroneAgent2 : Agent
         // Use the initial position from BaseLink and convert it properly
         var NewPosition = ENU.ConvertToRUF(
             new Vector3(
-                (float)initialPositionSAM[0],  
+                (float)initialPositionSAM[0]+5f,  
                 (float)initialPositionSAM[1],
-                (float)initialPositionSAM[2]+5f //keeping the position same as the initial position of the drone 
+                (float)initialPositionSAM[2]+7f //keeping the position same as the initial position of the drone 
             ));
          // Use a default orientation (identity quaternion)
         var NewOrientation = Quaternion.identity;
