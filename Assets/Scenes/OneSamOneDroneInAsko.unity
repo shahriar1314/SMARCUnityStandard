@@ -7961,23 +7961,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
   m_PrefabInstance: {fileID: 1574156454}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &840331843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9e6c0971ffe44f23a804e25fef58bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseLink: {fileID: 1184436778}
-  BaseLinkSAM: {fileID: 1290720233}
-  droneController: {fileID: 840331844}
-  sideLength: 3
-  speed: 2
 --- !u!114 &840331844 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8902112791058481484, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
@@ -7989,42 +7972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72405ca9a517fcf22b500022d32e0ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &840331845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe68a60a911bd5d0993cff00a72cfae3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseLink: {fileID: 1184436778}
-  BaseLinkSAM: {fileID: 1290720233}
-  Target: {fileID: 1184436779}
-  DroneActuator: {fileID: 39359782}
-  droneController: {fileID: 840331844}
-  PathLenght: 6
-  speed: 1
---- !u!114 &840331848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4feaf306f2ffe09079c4e60fbda404dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseLink: {fileID: 1184436778}
-  BaseLinkSAM: {fileID: 1290720233}
-  droneController: {fileID: 840331844}
-  sideLength: 5
-  speed: 1
 --- !u!114 &840331849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8062,43 +8009,6 @@ MonoBehaviour:
   droneController: {fileID: 840331844}
   sideLength: 10
   speed: 1
---- !u!114 &840331853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d3749dd04446854814840315a81b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseLink: {fileID: 1184436778}
-  BaseLinkSAM: {fileID: 1290720233}
-  droneController: {fileID: 840331844}
-  sideLength: 3
-  speed: 1
-  quadrotorPrefab: {fileID: 840331842}
---- !u!114 &840331856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840331842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74ba50320905f96e58e1e7ea445f52f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseLink: {fileID: 1184436778}
-  BaseLinkSAM: {fileID: 1290720233}
-  Target: {fileID: 1184436779}
-  DroneActuator: {fileID: 39359782}
-  droneController: {fileID: 840331844}
-  PathLenght: 6
-  speed: 1
 --- !u!114 &840331859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8112,12 +8022,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 12
+    VectorObservationSize: 7
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 6
+      m_NumContinuousActions: 3
       BranchSizes: 
-    VectorActionSize: 06000000
+    VectorActionSize: 03000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
@@ -8148,7 +8058,7 @@ MonoBehaviour:
   MaxStep: 10000
   BaseLink: {fileID: 1184436778}
   BaseLinkSAM: {fileID: 1290720233}
-  goal: {fileID: 682568269}
+  goal: {fileID: 830984231}
   droneController: {fileID: 840331844}
   maxSpeed: 0.5
   debugMode: 0
@@ -12190,6 +12100,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 459097933565788526, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
   m_PrefabInstance: {fileID: 1951485963}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1290720235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3567068247855063146, guid: 78d04dcbae40bc646a35e455b2c6fc2b, type: 3}
+  m_PrefabInstance: {fileID: 1951485963}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1305440613
 GameObject:
   m_ObjectHideFlags: 0
@@ -15220,6 +15135,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20555659417247700, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+      propertyPath: field of view
+      value: 24.5
+      objectReference: {fileID: 0}
     - target: {fileID: 992738944790747246, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       propertyPath: m_ParentAnchorPosition.x
       value: 0.000026404858
@@ -15284,6 +15203,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8826866181995455972, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
+      propertyPath: AUVTransform
+      value: 
+      objectReference: {fileID: 1290720235}
     - target: {fileID: 8902112791058481484, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       propertyPath: LoadLinkTF
       value: 
@@ -15306,25 +15229,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 840331843}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 840331845}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 840331848}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 840331849}
     - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 840331852}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 840331853}
-    - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 840331856}
     - targetCorrespondingSourceObject: {fileID: 1469583607899678, guid: b2f9c349e7f9f430eae6dba87f83d39d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 840331859}
