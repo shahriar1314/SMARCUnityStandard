@@ -54,8 +54,11 @@ public class DroneAgent2 : Agent
 
     private float prevDistanceToGoal = 0f; 
     private float currentDistanceToGoal = 0f; 
+    private List<Vector3> dronePositions = new List<Vector3>();
+    private string logFilePath;
 
- 
+
+
 
     public override void Initialize()
     {
@@ -84,6 +87,9 @@ public class DroneAgent2 : Agent
             goal.position.y,
             goal.position.z
         );
+        
+        logFilePath = Path.Combine(Application.dataPath, "drone_positions.csv");
+
     }
     
 
@@ -171,9 +177,12 @@ public class DroneAgent2 : Agent
         // Debug.Log($"[DroneAgent] Distance to Goal: {distanceToGoal} ");
         var position = BaseLink.transform.position;
 
+        dronePositions.Add(BaseLink.transform.position);
+
         if (distanceToGoal < 2f)
         {
             AddReward(10f);
+            WritePositionsToFile();
             EndEpisode();
             Debug.Log($"EPISODE ENDED, *******GOAL REACHED*******, Distance to Goal:  {distanceToGoal}");
         }
@@ -181,6 +190,7 @@ public class DroneAgent2 : Agent
         else if (distanceToGoal > 15f)
         {
             AddReward(-100f);
+            WritePositionsToFile();
             EndEpisode();
             Debug.Log($"EPISODE ENDED, DRONE IS TOO FAR, Distance to Goal: {distanceToGoal}");
         }
@@ -188,6 +198,7 @@ public class DroneAgent2 : Agent
         else if (position.y < 0f)
         {
             SetReward(-100f);
+            WritePositionsToFile();
             EndEpisode();
             Debug.Log($"EPISODE ENDED, DRONE WENT UNDERWATER, Distance to Goal: {distanceToGoal}");
         }
@@ -197,6 +208,9 @@ public class DroneAgent2 : Agent
     public override void OnEpisodeBegin()
     {
         if(debugMode) Debug.Log("[DroneAgent] On Episode Beginning. Resetting agent...");
+
+        dronePositions.Clear();
+
         
         immovableStage = 0;
 
@@ -228,6 +242,20 @@ public class DroneAgent2 : Agent
         
 
     }
+
+    void WritePositionsToFile()
+    {
+        using (StreamWriter writer = new StreamWriter(logFilePath, true)) // true to append
+        {
+            writer.WriteLine("New Episode:");
+            foreach (Vector3 pos in dronePositions)
+            {
+                writer.WriteLine($"{pos.x},{pos.y},{pos.z}");
+            }
+            writer.WriteLine(); // blank line between episodes
+        }
+    }
+
 
 
     void ResetPosition()
