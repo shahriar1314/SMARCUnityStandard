@@ -8060,7 +8060,7 @@ MonoBehaviour:
   BaseLinkSAM: {fileID: 1290720233}
   goal: {fileID: 830984231}
   droneController: {fileID: 840331844}
-  maxSpeed: 0.5
+  maxSpeed: 1.5
   debugMode: 0
   Target: {fileID: 1184436779}
   DroneActuator: {fileID: 39359782}
@@ -8100,9 +8100,9 @@ MonoBehaviour:
   goal: {fileID: 1018751213}
   droneController: {fileID: 840331844}
   maxSpeed: 0.5
+  debugMode: 0
   Target: {fileID: 1184436779}
   DroneActuator: {fileID: 39359782}
-  debugMode: 0
 --- !u!1 &843903048
 GameObject:
   m_ObjectHideFlags: 0
