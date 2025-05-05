@@ -59,7 +59,7 @@ public class DroneAgent2 : Agent
     private List<Vector3> dronePositions = new List<Vector3>();
     private string logFilePath;
     private int episodeCounter;
-
+    private bool episodeSuccess = false; 
 
 
 
@@ -94,11 +94,9 @@ public class DroneAgent2 : Agent
         string folder = "/home/shs/colcon_ws/src/smarc2/simulation/SMARCUnityStandard/Assets/Trajectory_Data";
         Directory.CreateDirectory(folder);  // Creates folder if it doesn't exist
 
-        logFilePath = Path.Combine(folder, "drone_positions_runid3_test1.csv");
+        logFilePath = Path.Combine(folder, "drone_positions_runid7_test1.csv");
 
-        // logFilePath = Path.Combine(Application.dataPath, "drone_positions_runid2_test2.csv");
-
-        episodeCounter = 0; 
+        episodeCounter = 0;
 
     }
     
@@ -163,7 +161,7 @@ public class DroneAgent2 : Agent
 
         float distanceFactor = 4 + 3 * math.tanh((currentDistanceToGoal - 10) / 3);
         float timePenalty = -20f / 2000; // MaxStep = 1000 typically
-        float reward = distancedCoveredTowardsGoal * 50 * distanceFactor + timePenalty + jitterReward;
+        float reward = distancedCoveredTowardsGoal * 50 * distanceFactor + timePenalty; // + jitterReward;
 
         AddReward(reward);
         cumulativeReward += reward;
@@ -187,6 +185,7 @@ public class DroneAgent2 : Agent
         if (distanceToGoal < 0.3f)
         {
             AddReward(10f);
+            episodeSuccess = true; 
             WritePositionsToFile();
             EndEpisode();
             Debug.Log($"EPISODE ENDED, *******GOAL REACHED*******, Distance to Goal:  {distanceToGoal}");
@@ -195,6 +194,7 @@ public class DroneAgent2 : Agent
         else if (distanceToGoal > 15f)
         {
             AddReward(-100f);
+            episodeSuccess = false; 
             WritePositionsToFile();
             EndEpisode();
             Debug.Log($"EPISODE ENDED, DRONE IS TOO FAR, Distance to Goal: {distanceToGoal}");
@@ -203,6 +203,7 @@ public class DroneAgent2 : Agent
         else if (position.y < 0f)
         {
             SetReward(-100f);
+            episodeSuccess = false;
             WritePositionsToFile();
             EndEpisode();
             Debug.Log($"EPISODE ENDED, DRONE WENT UNDERWATER, Distance to Goal: {distanceToGoal}");
@@ -250,18 +251,40 @@ public class DroneAgent2 : Agent
 
     }
 
+    // void WritePositionsToFile()
+    // {
+    //     using (StreamWriter writer = new StreamWriter(logFilePath, true)) // true to append
+    //     {
+    //         if (episodeCounter % 5 != 0) return;
+    //         writer.WriteLine($"New Episode: Success = {episodeSuccess} Episode Counter = {episodeCounter}");
+    //         foreach (Vector3 pos in dronePositions)
+    //         {
+    //             writer.WriteLine($"{pos.x},{pos.y},{pos.z}");
+    //         }
+    //         writer.WriteLine(); // blank line between episodes
+    //     }
+    // }
+
     void WritePositionsToFile()
+{
+    using (StreamWriter writer = new StreamWriter(logFilePath, true)) // true to append
     {
-        using (StreamWriter writer = new StreamWriter(logFilePath, true)) // true to append
+
+        if (episodeCounter == 1) writer.WriteLine("episode_counter,x,y,z,success");
+
+        if (episodeCounter % 5 != 0 & episodeSuccess == false) return;
+
+        int successLabel = episodeSuccess ? 1 : 0;
+
+        foreach (Vector3 pos in dronePositions)
         {
-            writer.WriteLine("New Episode:");
-            foreach (Vector3 pos in dronePositions)
-            {
-                if (episodeCounter % 5 == 0) writer.WriteLine($"{episodeCounter},{pos.x},{pos.y},{pos.z}");
-            }
-            writer.WriteLine(); // blank line between episodes
+            writer.WriteLine($"{episodeCounter},{pos.x},{pos.y},{pos.z},{successLabel}");
         }
+
+        writer.WriteLine(); // optional blank line
     }
+}
+
 
 
 
