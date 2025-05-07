@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Constants and initial conditions
-k = 0.4
+k = 1.6
 kd_alpha = 0.4
 initial_velocity = 4.5
 
 # Initial and target positions
-p0 = np.array([5, 0, 0])
+p0 = np.array([0, 0, 10])
 ptd = np.array([3, 4, 0])
 
 # Time settings

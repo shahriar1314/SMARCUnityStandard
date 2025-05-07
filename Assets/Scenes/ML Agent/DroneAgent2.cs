@@ -94,7 +94,7 @@ public class DroneAgent2 : Agent
         string folder = "/home/shs/colcon_ws/src/smarc2/simulation/SMARCUnityStandard/Assets/Trajectory_Data";
         Directory.CreateDirectory(folder);  // Creates folder if it doesn't exist
 
-        logFilePath = Path.Combine(folder, "drone_positions_runid7_test1.csv");
+        logFilePath = Path.Combine(folder, "drone_positions_runid10_test3.csv");
 
         episodeCounter = 0;
 
@@ -182,7 +182,7 @@ public class DroneAgent2 : Agent
 
         dronePositions.Add(BaseLink.transform.position);
 
-        if (distanceToGoal < 0.3f)
+        if (distanceToGoal < 1f)
         {
             AddReward(10f);
             episodeSuccess = true; 
@@ -294,9 +294,9 @@ public class DroneAgent2 : Agent
         // Use the initial position from BaseLink and convert it properly
         var NewPosition = ENU.ConvertToRUF(
             new Vector3(
-                (float)initialPositionSAM[0]+5f + Random.Range(-5f,5f),  
-                (float)initialPositionSAM[1]+8f,
-                (float)initialPositionSAM[2]+7f + Random.Range(-2f,2f) //keeping the position same as the initial position of the drone 
+                (float)initialPositionSAM[0] + Random.Range(-10f,10f),  
+                (float)initialPositionSAM[1]+8f + Random.Range(-2f,2f),
+                (float)initialPositionSAM[2] + Random.Range(-10f,10f) //keeping the position same as the initial position of the drone 
             ));
          // Use a default orientation (identity quaternion)
         var NewOrientation = Quaternion.identity;
