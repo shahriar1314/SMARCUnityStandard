@@ -73,7 +73,7 @@ ax.plot(p1[:,0], p1[:,1], p1[:,2], label='Perch Trajectory', linewidth=2)
 ax.plot(p2[:,0], p2[:,1], p2[:,2], label='Fly-Away Trajectory', linestyle='--', linewidth=2)
 
 # Markers for p0 and ptd
-ax.scatter(*p0,  color='red',   label='Start (p0)',   s=50)
+# ax.scatter(*p0,  color='red',   label='Start (p0)',   s=50)
 ax.scatter(*ptd, color='green', label='Perch Point',   s=50)
 
 ax.set_xlabel('X')
